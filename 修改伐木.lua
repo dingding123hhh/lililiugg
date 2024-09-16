@@ -1807,17 +1807,7 @@ local ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/dingding12
 local win = ui:new("禁漫中心")
 --
 
-local UITab1 = win:Tab("『主要』",'7734068321')--1
-local UITab2 = win:Tab("『玩家』",'7734068321')--2
-local UITab3 = win:Tab("『环境』",'7734068321')--3
-local UITab4 = win:Tab("『填充蓝图』",'7734068321')--4
-local UITab5 = win:Tab("『木头』",'7734068321')--5
-local UITab6 = win:Tab("『整合』",'7734068321')--6
-local UITab7 = win:Tab("『汽车』",'7734068321')--7
-local UITab8 = win:Tab("『传送树』",'7734068321')--8
-local UITab9 = win:Tab("『其他』",'7734068321')--9
-local UITab10 = win:Tab("『自动购买』",'7734068321')--10
-local UITab11 = win:Tab("『自动购买杂余物品』",'7734068321')--11
+local UITab1 = win:Tab("『主要』",'7734068321')
 
 local about = UITab1:section("『斧头功能』",true)
 
@@ -2497,6 +2487,8 @@ about:Toggle("自动赚钱",false,function(state)
 
 about:Line()
 
+local UITab2 = win:Tab("『玩家』",'7734068321')
+
 local about = UITab2:section("『人物』",true)
 
 about:Slider("速度",16,100,25,function(s)
@@ -2633,6 +2625,8 @@ about:Toggle("隐身",false,function(state)
 about:Button("飞行",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/dingding123hhh/tt/main/jm%E9%A3%9E..lua"))()
 end)
+
+local UITab3 = win:Tab("『环境』",'7734068321')
 
 local about = UITab3:section("『地图』",true)
 
@@ -3093,7 +3087,9 @@ about:Button("带来沼泽桥",function()
 
 end)
 
-local about = UITab5:section("『整理木头』",true)
+local UITab4 = win:Tab("『木头』",'7734068321')
+
+local about = UITab4:section("『整理木头』",true)
 
 local Players = about:Dropdown("选择玩家",Green.dropdown, function(v)
     Green.mtwjia = v
@@ -3198,7 +3194,9 @@ about:Button("开始整理",function()
     end
 end)
 
-local about = UITab4:section("『蓝图』",true)
+local UITab5 = win:Tab("『蓝图』",'7734068321')
+
+local about = UITab5:section("『蓝图』",true)
 
 local drop = about:Dropdown("选择木头类型",{"普通树","沼泽黄金", "樱花","蓝木","冰木","火山木","橡木","巧克力木","白桦木","黄金木","雪地松","僵尸木","大巧克力树","椰子树","幻影"},function(b)
     lllllllllllllllll = b
@@ -3294,6 +3292,8 @@ about:Button("填充蓝图（全部）",function()
 
     end
 end)
+
+local UITab6 = win:Tab("『整合』",'7734068321')
 
 local about = UITab6:section("『玩家』",true)
 
@@ -3729,6 +3729,8 @@ about:Toggle("查看玩家基地",false,function(state)
     end
 end)
 
+local UITab7 = win:Tab("『汽车』",'7734068321')
+
 local about = UITab7:section("『汽车』",true)
 
 about:Dropdown("传送位置",{"木材反斗城","出生点","土地商店","桥","码头","椰子岛","洞穴","火山","沼泽","家具店","盒子车行","雪山","连锁逻辑店","鲍勃的小店","画廊","灵视神殿","怪人","小绿盒","滑雪小屋","黄金木洞穴","鲨鱼斧合成","小鸟斧头","灯塔","回家"},function(o)
@@ -3932,6 +3934,8 @@ about:Button("停止",function()
     end
 end)
 
+local UITab8 = win:Tab("『传送树』",'7734068321')
+
 local about = UITab8:section("『传送树』",true)
 
 about:Dropdown("传送到树",{"普通树","沼泽黄金","樱花","蓝木","冰木","火山木","橡木","巧克力木","白桦木","黄金木","雪地松","僵尸木","大巧克力树","椰子树","幻影木"},function(b)
@@ -3981,6 +3985,8 @@ about:Button("传送",function()
             end
         end
     end)
+
+local UITab9 = win:Tab("『其他』",'7734068321')
 
 local about = UITab9:section("『其他』",true)
 
@@ -4330,6 +4336,8 @@ about:Button("安全自杀",function()
     lp.Character.Head:Destroy()
 end)
 
+local UITab10 = win:Tab("『自动购买』",'7734068321')
+
 local about = UITab10:section("『自动购买』",true)
 
 about:Textbox("购买数量","输入数字",function(txt)
@@ -4643,6 +4651,8 @@ about:Button("停止购买",function()
     end)
 
 end)
+
+local UITab11 = win:Tab("『自动购买其他』",'7734068321')
 
 local about = UITab11:section("『自动购买』",true)
 
