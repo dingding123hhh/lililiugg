@@ -3442,35 +3442,6 @@ about:Button("传送",function()
         end
 end)
 
-local about = UITab7:section("『汽车飞行』",true)
-
-about:about("汽车穿墙",false,function(state)
-    if state then
-
-        vnoclipParts = {}
-        local seat = lp.Character:FindFirstChildOfClass('Humanoid').SeatPart
-        local vehicleModel = seat.Parent
-        repeat
-            if vehicleModel.ClassName ~= "Model" then
-                vehicleModel = vehicleModel.Parent
-            end
-        until vehicleModel.ClassName == "Model"
-        wait(0.1)
-        for i, v in pairs(vehicleModel:GetDescendants()) do
-            if v:IsA("BasePart") and v.CanCollide then
-                table.insert(vnoclipParts, v)
-                v.CanCollide = false
-            end
-        end
-    else
-        for i, v in pairs(vnoclipParts) do
-            v.CanCollide = true
-        end
-        vnoclipParts = {}
-    end
-
-end)
-
 local about = UITab7:section("『粉刷车』",true)
 
 about:Button("获得选择工具",function()
