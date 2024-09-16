@@ -1811,44 +1811,6 @@ local UITab1 = win:Tab("『主要』",'7734068321')
 
 local about = UITab1:section("『斧头功能』",true)
 
-about:Toggle("自动扔斧头",false,function(state)
-   Green.autodropae = true
-    if state then
-
-        while wait() do
-
-            if Green.autodropae == true then
-                local oldpos = lp.Character.HumanoidRootPart.CFrame
-                droptool(oldpos)
-            end
-        end
-    else
-        Green.autodropae = false
-    end
-    end)
-    
-about:Toggle("自动捡斧头",false,function(state)
-    if state then
-        Green.autopick = true
-        while Green.autopick == true do
-
-            task.wait(0.1)
-            for a, b in pairs(workspace.PlayerModels:GetChildren()) do
-                if b:FindFirstChild("Owner") and b.Owner.Value == game.Players.LocalPlayer then
-                    if b:FindFirstChild("Type") and b.Type.Value == "Tool" then
-
-                        game:GetService('ReplicatedStorage').Interaction.ClientInteracted:FireServer(b, 'Pick up tool')
-
-                    end
-                end
-
-            end
-        end
-    else
-        Green.autopick = false
-    end
-    end)
-
 about:Button("远程装备斧头",function()
     farAxeEquip()
 end)
