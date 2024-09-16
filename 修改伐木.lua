@@ -1814,14 +1814,6 @@ local about = UITab1:section("『斧头功能』",true)
 about:Button("远程装备斧头",function()
     farAxeEquip()
 end)
-
-about:Toggle("斧头跟随鼠标",false,function(state)
-    if state then
-        Green.whthmose = true
-    else
-        Green.whthmose = false
-    end
-    end)
     
 about:Toggle("斧头炸家",false,function(state)
     if state then
@@ -1832,7 +1824,7 @@ about:Toggle("斧头炸家",false,function(state)
             Green.axeFling = nil;
         end
     end
-    end)
+end)
     
 local about = UITab1:section("『基地』",true)
 
