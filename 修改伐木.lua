@@ -1815,17 +1815,6 @@ about:Button("远程装备斧头",function()
     farAxeEquip()
 end)
     
-about:Toggle("斧头炸家",false,function(state)
-    if state then
-        axefily()
-    else
-        if Green.axeFling then
-            Green.axeFling:Disconnect(0.1);
-            Green.axeFling = nil;
-        end
-    end
-end)
-    
 local about = UITab1:section("『基地』",true)
 
 about:Button("免费土地",function()
@@ -1926,65 +1915,6 @@ about:Button("一键复制",function()
     
 local about = UITab1:section("『木头』",true)
 
-about:Toggle("自动把木头切成一个单位",false,function(state)
-    local oldpos = lp.Character.HumanoidRootPart.CFrame
-
-    if state then
-        PlankReAdded = game:GetService("Workspace").PlayerModels.ChildAdded:Connect(function(v)
-            if v:WaitForChild("TreeClass") and v:WaitForChild("WoodSection") then
-                SelTree = v
-                task.wait()
-            end
-        end)
-        UnitCutterClick = Mouse.Button1Up:Connect(function()
-            Clicked = Mouse.Target
-
-            if Clicked.Name == "WoodSection" then
-                SelTree = Clicked.Parent
-                game.Players.LocalPlayer.Character:MoveTo(Clicked.Position + Vector3.new(0, 3, -3))
-                local success, data = getBestAxe(SelTree.TreeClass.Value)
-                repeat
-                    if state == false then
-                        break
-                    end
-                    cutPart(SelTree.CutEvent, 1, 1, data, SelTree.TreeClass.Value)
-                    if SelTree:FindFirstChild("Cut") then
-                        game.Players.LocalPlayer.Character:MoveTo(
-                            SelTree:FindFirstChild("Cut").Position + Vector3.new(0, 3, -3))
-                    end
-                    task.wait()
-                until SelTree.WoodSection.Size.X <= 1.88 and SelTree.WoodSection.Size.Y <= 1.88 and
-                    SelTree.WoodSection.Size.Z <= 1.88 or state == false
-            end
-        end)
-
-    else
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = oldpos
-        UnitCutterClick:Disconnect()
-        UnitCutterClick = nil
-        PlankReAdded:Disconnect()
-        PlankReAdded = nil
-    end
-    end)
-
-about:Toggle("查看幻影",false,function(state)
-    if state then
-
-        for i, v in pairs(game.workspace:GetChildren()) do
-            if v.Name == "TreeRegion" and v:FindFirstChildOfClass("Model") then
-                if v.Model.TreeClass.Value == "LoneCave" then
-                    workspace.Camera.CameraSubject = v.Model.WoodSection
-                    task.wait()
-                end
-            end
-        end
-
-    else
-        workspace.Camera.CameraSubject = game.Players.LocalPlayer.Character
-
-    end
-    end)
-
 about:Button("删树/木板",function()
         local a = game:GetService("ReplicatedStorage")
     local b = game:GetService("Players").LocalPlayer
@@ -2030,47 +1960,6 @@ about:Button("删树/木板",function()
     end)
     f.Parent = game.Players.LocalPlayer.Backpack
 end)
-
-about:Toggle("加强拖拽器",false,function(state)
-    if state then
-        workspace.ChildAdded:connect(function(Dragger)
-            if tostring(Dragger) == 'Dragger' then
-                local BodyGyro = Dragger:WaitForChild 'BodyGyro';
-                local BodyPosition = Dragger:WaitForChild 'BodyPosition';
-                repeat
-                    game:GetService 'RunService'.Stepped:wait()
-                until workspace:FindFirstChild 'Dragger';
-
-                BodyPosition.P = 120000;
-                BodyPosition.D = 1000;
-                BodyPosition.maxForce = Vector3.new(1, 1, 1) * 1000000;
-                BodyGyro.maxTorque = Vector3.new(1, 1, 1) * 200;
-                BodyGyro.P = 1200;
-                BodyGyro.D = 140;
-
-            end
-        end)
-    else
-
-        workspace.ChildAdded:connect(function(Dragger)
-            if tostring(Dragger) == 'Dragger' then
-                local BodyGyro = Dragger:WaitForChild 'BodyGyro';
-                local BodyPosition = Dragger:WaitForChild 'BodyPosition';
-                repeat
-                    game:GetService 'RunService'.Stepped:wait()
-                until workspace:FindFirstChild 'Dragger';
-
-                BodyPosition.P = 10000;
-                BodyPosition.D = 800;
-                BodyPosition.maxForce = Vector3.new(17000, 17000, 17000);
-                BodyGyro.maxTorque = Vector3.new(200, 200, 200);
-                BodyGyro.P = 1200;
-                BodyGyro.D = 140;
-            end
-        end)
-
-    end
-    end)
 
 about:Button("传送木头",function()
         OldPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
@@ -2153,23 +2042,6 @@ about:Button("卖木头",function()
     sellwood()
 end)
 
-about:Toggle("自动卖木头",false,function(value)
-    if Text == "关" then
-        Text = "开"
-    else
-        Text = "关"
-    end
-
-    local oldpos = lp.Character.HumanoidRootPart.CFrame
-    while wait() do
-        if value then
-            if Text == "关" then
-                sellwood()
-            end
-        end
-    end
-    end)
-    
 about:Button("木板填充蓝图",function()
     PlankToBlueprint()
 end)
@@ -2369,25 +2241,6 @@ about:Button("停止",function()
     Green.bringtree = false
 end)
 
-about:Toggle("自动砍树",false,function(state)
-    if state then
-        Green.autofarm = true
-        task.spawn(function()
-            while task.wait(0.3) do
-
-                if Green.autofarm == true then
-
-                    bringTree(Green.cuttreeselect)
-
-                end
-            end
-        end)
-    else
-        Green.autofarm = false
-
-    end
-    end)
-    
 about:Toggle("自动赚钱",false,function(state)
     local oldpos = lp.Character.HumanoidRootPart.CFrame
 
