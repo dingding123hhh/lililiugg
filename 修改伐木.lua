@@ -2176,14 +2176,6 @@ end)
 
 local about = UITab1:section("『树』",true)
 
-about:Dropdown("选择树",{"普通树","幻影木","沼泽黄金","樱花","蓝木","冰木","火山木","橡木","巧克力木","白桦木","黄金木","雪地松","僵尸木","大巧克力树","椰子树","南瓜木","幽灵木"},function(b)
-   lllllllllllllllllllllllllllllllllllllllllllllllllll = b
-end)
-
-about:Textbox("带来树的数量","",true,function(txt)
-Green.bringamount = txt
-end)
-
 about:Button("带来树",function()
         if lllllllllllllllllllllllllllllllllllllllllllllllllll == "普通树" then
             Green.cuttreeselect = "Generic"
@@ -2237,104 +2229,17 @@ about:Button("停止",function()
     Green.bringtree = false
 end)
 
-about:Toggle("自动赚钱",false,function(state)
-    local oldpos = lp.Character.HumanoidRootPart.CFrame
-
-    if state then
-        Green.autofarm1 = true
-        local function callback(Text)
-            if Text == "确定" then
-                pcall(function()
-
-                    while task.wait() do
-                        if Green.autofarm1 == true then
-                            game:GetService("Players").LocalPlayer.Character:MoveTo(Vector3.new(315, -0.296, 102.791));
-
-                            autofarm(Green.cuttreeselect)
-
-                            wait(1)
-                            game:GetService("Players").LocalPlayer.Character:MoveTo(Vector3.new(315, -0.296, 102.791));
-
-                            wait(20)
-                        end
-                    end
-                end)
-
-            elseif Text == "取消" then
-
-            end
-        end
-
-        local NotificationBindable = Instance.new("BindableFunction")
-        NotificationBindable.OnInvoke = callback
-        --
-        game.StarterGui:SetCore("SendNotification", {
-            Title = "丁丁",
-            Text = "使用此功能前请你打开自动卖木头",
-            Icon = "",
-            Duration = 6,
-            Button1 = "确定",
-            Button2 = "取消",
-            Callback = NotificationBindable
-        })
-    else
-        Green.autofarm1 = false
-        for i, v in pairs(game.Workspace.Properties:GetChildren()) do
-            if v.Owner.Value == game.Players.LocalPlayer then
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.OriginSquare.CFrame +
-                                                                                 Vector3.new(0, 10, 0)
-            end
-        end
-    end
-    end)
-
-about:Line()
-
 local UITab2 = win:Tab("『玩家』",'7734068321')
 
 local about = UITab2:section("『人物』",true)
-
-about:Slider("速度",16,100,25,function(s)
-            Green.walkspeed = s
-    spawn(function()
-        while task.wait() do
-            game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = Green.walkspeed
-        end
-    end)
-    end)
     
-about:Slider("跳跃",50,100,25,function(s)
-    Green.JumpPower = s
-    spawn(function()
-        while task.wait() do
-            game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = Green.JumpPower
-        end
-    end)
-    end)
-    
-about:Slider("高度",0,100,25,function(s)
-      lp.Character.Humanoid.HipHeight = s
-    end)
-    
-about:Slider("重力",198,100,25,function(s)
-        game.workspace.Gravity = s
-    end)
-    
-about:Slider("相机焦距",100,100,25,function(s)
-        lp.CameraMaxZoomDistance = s
-    end)
-    
-about:Toggle("自身发光",false,function(state)
+about:Button("自身发光",false,function(state)
 if state then
         applyLight(true);
     else
         applyLight();
     end
     end)
-    
-about:Dropdown("传送",{"出生点","木材反斗城","土地商店","桥","码头","椰子岛","洞穴","鲨鱼斧合成","火山","沼泽","家具店","盒子车行","连锁逻辑店","鲍勃的小店","画廊","雪山","灵视神殿","怪人","小绿盒","滑雪小屋","黄金木洞穴","小鸟斧头","灯塔","回家"},function(b)
-  p=b
-end)
 
 about:Button("传送",function()
             if p == "木材反斗城" then
@@ -2411,18 +2316,8 @@ function NoClip(NoClipVal)
     end)
 end
 
-about:Toggle("穿墙",false,function(state)
+about:Button("穿墙",false,function(state)
 NoClip(state)
-    end)
-    
-
-local invisnum = 0
-about:Toggle("隐身",false,function(state)
-    if state then
-        TurnInvisible()
-    else
-        TurnVisible()
-    end
     end)
     
 about:Button("飞行",function()
@@ -2433,7 +2328,7 @@ local UITab3 = win:Tab("『环境』",'7734068321')
 
 local about = UITab3:section("『地图』",true)
 
-about:Toggle("终日黑天",false,function(state)
+about:Button("终日黑天",false,function(state)
     if state then
         Green.awaysdnight = true
         while task.wait() do
@@ -2446,7 +2341,7 @@ about:Toggle("终日黑天",false,function(state)
     end
     end)
     
-about:Toggle("终日白天",false,function(state)
+about:Button("终日白天",false,function(state)
     if state then
         Green.awaysday = true
         while task.wait() do
@@ -2460,7 +2355,7 @@ about:Toggle("终日白天",false,function(state)
     end)
     
 game:GetService("Lighting").GlobalShadows = true
-about:Toggle("消除阴影",false,function(state)
+about:Button("消除阴影",false,function(state)
 
     if state then
         game:GetService("Lighting").GlobalShadows = false
@@ -2517,7 +2412,7 @@ about:Button("删除灵视神殿的石头",function()
     workspace.Region_Mountainside.Door.Door:Destroy()
 end)
 
-about:Toggle("删除岩浆",false,function(state)
+about:Button("删除岩浆",false,function(state)
     for i, v in pairs(game.Workspace.Region_Volcano:GetDescendants()) do
         if v.Name == "TouchInterest" then
             v:Destroy()
@@ -2535,7 +2430,7 @@ about:Toggle("删除岩浆",false,function(state)
     end
 end)
 
-about:Toggle("删除水",false,function(state)
+about:Button("删除水",false,function(state)
     for _, v in pairs(game.Workspace.Water:GetChildren()) do
         if v.Name == "Water" then
             if state then
@@ -2547,7 +2442,7 @@ about:Toggle("删除水",false,function(state)
     end
 end)
 
-about:Toggle("去除雾",false,function(state)
+about:Button("去除雾",false,function(state)
     if state then
         Green.nofog = true
         while task.wait() do
@@ -2560,7 +2455,7 @@ about:Toggle("去除雾",false,function(state)
     end
 end)
 
-about:Toggle("水上行走",false,function(state)
+about:Button("水上行走",false,function(state)
     for i, v in next, game.workspace.Water:children() do
         if v.ClassName == 'Part' then
             Green.waterwalk, v.CanCollide = state, state;
@@ -2573,7 +2468,7 @@ about:Toggle("水上行走",false,function(state)
     end
 end)
 
-about:Toggle("放下桥",false,function(state)
+about:Button("放下桥",false,function(state)
     if state then
         lowerBridge("Lower")
     else
@@ -2620,10 +2515,6 @@ end)
 
 about:Button("查看游戏时间",function()
     notify("丁丁", "游戏时间为" .. tostring(game.Lighting.TimeOfDay):sub(1, -2):sub(1, -2):sub(1, -2), 4)
-end)
-
-about:Textbox("自定义亮度","输入亮度",true,function(s)
-    game:GetService("Lighting").Brightness = s / 10
 end)
 
 about:Button("提高画质",function()
@@ -2894,20 +2785,12 @@ local UITab4 = win:Tab("『木头』",'7734068321')
 
 local about = UITab4:section("『整理木头』",true)
 
-local Players = about:Dropdown("选择玩家",Green.dropdown, function(v)
-    Green.mtwjia = v
-end)
-
 about:Button("重置玩家名称", function()
     shuaxinlb(true)
     Players:SetOptions(Green.dropdown)
 end)
-
-local drop = about:Dropdown("选择木头类型",{"普通树","沼泽黄金","樱花","蓝木","冰木","火山木","橡木","巧克力木","白桦木","黄金木","雪地松","僵尸木","大巧克力树","椰子树","幻影","幽灵木","南瓜木"},function(b)
-   mt = b
-    end)
     
-about:Toggle("改为竖着整理",false,function(state)
+about:Button("改为竖着整理",false,function(state)
     if state then
 
         Green.shuzhe = true
@@ -3000,10 +2883,6 @@ end)
 local UITab5 = win:Tab("『蓝图』",'7734068321')
 
 local about = UITab5:section("『蓝图』",true)
-
-local drop = about:Dropdown("选择木头类型",{"普通树","沼泽黄金", "樱花","蓝木","冰木","火山木","橡木","巧克力木","白桦木","黄金木","雪地松","僵尸木","大巧克力树","椰子树","幻影"},function(b)
-    lllllllllllllllll = b
-    end)
 
 about:Button("填充蓝图（木头）",function()    
             if lllllllllllllllll == "普通树" then
@@ -3099,10 +2978,6 @@ end)
 local UITab6 = win:Tab("『整合』",'7734068321')
 
 local about = UITab6:section("『玩家』",true)
-
-local dropdown = about:Dropdown("选择玩家名称",Green.dropdown,function(v)
-    Green.playernamedied = v
-end)
 
 about:Button("刷新列表",function()
     shuaxinlb(true)
@@ -3504,22 +3379,9 @@ about:Button("飞玩家",function()
 
 end)
 
-about:Toggle("查看玩家",false,function(state)
-    if state then
-        game:GetService('Workspace').CurrentCamera.CameraSubject =
-            game:GetService('Players'):FindFirstChild(Green.playernamedied).Character.Humanoid
-    else
-        game:GetService('Workspace').CurrentCamera.CameraSubject = lp.Character.Humanoid
-    end
-end)
-
 local UITab7 = win:Tab("『汽车』",'7734068321')
 
 local about = UITab7:section("『汽车』",true)
-
-about:Dropdown("传送位置",{"木材反斗城","出生点","土地商店","桥","码头","椰子岛","洞穴","火山","沼泽","家具店","盒子车行","雪山","连锁逻辑店","鲍勃的小店","画廊","灵视神殿","怪人","小绿盒","滑雪小屋","黄金木洞穴","鲨鱼斧合成","小鸟斧头","灯塔","回家"},function(o)
-     i=o
-end)
 
 about:Button("传送",function()
         if i == "木材反斗城" then
@@ -3582,48 +3444,7 @@ end)
 
 local about = UITab7:section("『汽车飞行』",true)
 
-about:Textbox("输入飞行速度","输入数字",true,function(s)
-    while (true) do
-        game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
-        game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChildOfClass("BodyVelocity"):Destroy()
-        game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChildOfClass("BodyGyro"):Destroy()
-        wait()
-        local BV = Instance.new("BodyVelocity", game.Players.LocalPlayer.Character.HumanoidRootPart)
-        local BG = Instance.new("BodyGyro", game.Players.LocalPlayer.Character.HumanoidRootPart)
-        BG.MaxTorque = Vector3.new(math.huge, math.huge, math.huge)
-        BG.D = 5000
-        BG.P = 50000
-        BG.CFrame = game.Workspace.CurrentCamera.CFrame
-        BV.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
-        BV.Velocity = game.Workspace.CurrentCamera.CFrame.LookVector * s
-    end
-end)
-
-about:Toggle("开始飞行",false,function(state)
-    if state then
-        local BV = Instance.new("BodyVelocity", game.Players.LocalPlayer.Character.HumanoidRootPart)
-        local BG = Instance.new("BodyGyro", game.Players.LocalPlayer.Character.HumanoidRootPart)
-        BG.MaxTorque = Vector3.new(math.huge, math.huge, math.huge)
-        BG.D = 5000
-        BG.P = 50000
-        BG.CFrame = game.Workspace.CurrentCamera.CFrame
-        BV.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
-    else
-        game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChildOfClass("BodyVelocity"):Destroy()
-        game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChildOfClass("BodyGyro"):Destroy()
-    end
-end)
-
-about:Button("飞行食用说明",function()
-    game:GetService("StarterGui"):SetCore("SendNotification", {
-        Title = "说明",
-        Text = "1，飞行速度要超过200不超过就会往下掉\n2，要先开启飞行再输入速度，然后重新开启飞行",
-        Button1 = "知道了",
-        Duration = 30
-    })
-end)
-
-about:Toggle("汽车穿墙",false,function(state)
+about:about("汽车穿墙",false,function(state)
     if state then
 
         vnoclipParts = {}
@@ -3650,16 +3471,7 @@ about:Toggle("汽车穿墙",false,function(state)
 
 end)
 
-about:Slider('汽车速度',3,600,3,function(s)
-    local speed = s
-    for i, v in pairs(game.Workspace.PlayerModels:GetChildren()) do
-        if v:FindFirstChild("Seat") and v:FindFirstChild("Configuration") then
-            v.Configuration.MaxSpeed.Value = speed
-        end
-    end
-end)
-
-about:Seperator("刷粉车")
+local about = UITab7:section("『粉刷车』",true)
 
 about:Button("获得选择工具",function()
     Identify = Instance.new("Tool")
@@ -3721,10 +3533,6 @@ end)
 local UITab8 = win:Tab("『传送树』",'7734068321')
 
 local about = UITab8:section("『传送树』",true)
-
-about:Dropdown("传送到树",{"普通树","沼泽黄金","樱花","蓝木","冰木","火山木","橡木","巧克力木","白桦木","黄金木","雪地松","僵尸木","大巧克力树","椰子树","幻影木"},function(b)
-     ds = b
-end)
 
 about:Button("传送",function()
         if ds == "普通树" then
@@ -4123,16 +3931,6 @@ end)
 local UITab10 = win:Tab("『自动购买』",'7734068321')
 
 local about = UITab10:section("『自动购买』",true)
-
-about:Textbox("购买数量","输入数字",function(txt)
-    Green.autobuyamount = txt
-end)
-
-local l = {"按钮","控制杆","电线","4/4x1木楔","3/4x1木楔","2/4x1木楔","1/4X1木楔","3/3x1木楔","2/3x1木楔","1/3x1木楔","2/2x1木楔","1/2x1木楔","1/1x1木楔","篱笆","压力板","1/3木楔","锯木机01","锯木机02L","波纹墙角立柱","传送带","普通凳子","倾斜传送带","3/4木楔","2/3木楔","光滑的墙","光滑墙角","普通锯木厂","4/4木楔","光滑墙立柱","篱笆角","矮篱笆角","矮波纹墙","长桌","矮篱笆","光滑墙角立柱","破旧锯木厂","普通门","矮光滑墙","工作灯","弯传送带","切换传送带","宽敞门","3/3木楔","400元小汽车","波纹墙立柱","锯木机02","漏斗式传送带","小型地板","小型瓷砖","矮波纹墙角","波纹墙","大型地板","微型瓷砖","微型地板","1/1木楔","左转直式传送带","银斧头","切割机","基础斧头","右转传送带","普通斧头","转向传送带支架","传送带支架","波纹墙角立柱","楼梯","陡峭楼梯","钢斧","标志杆","梯子","大型瓷砖","瓷砖","硬化斧","半截门","木头清扫机","光滑墙立柱","沙子袋","小型拖车","531式拖车","小汽车XL","大卡车","长沙发","洗碗机","薄柜子","冰箱","火炉","马桶","双人沙发","床","落地灯","台灯","微型玻璃板","小型玻璃板","玻璃板","大型玻璃板","玻璃门","琥珀色冰柱灯串","红色冰柱灯串","绿色冰柱灯串","蓝色冰柱灯串","烟花发射器","惊悚冰柱灯串","单人沙发","双人床","灯泡","工作台面","薄工作台面","带水槽的工作台面","照明灯","墙灯","橱柜角","宽橱柜角","橱柜","炸药","毛毛虫软糖","未知标题","困扰装饰画","户外水彩素描","阴郁的黄昏海景","北极灯串","菠萝画","孤独的长颈鹿","信号维持器","与门","异与门","木材检测器","按钮","压力板","OR门","拉杆","信号延时器","信号变换器","激光","激光探测器","舱门","橙色发光线","绿色发光线","黄色发光线","白色发光线","紫色发光线","红色发光线","青色发光线","蓝色发光线","定时开关"}
-           
-about:Dropdown("自动购买的物品",l,function(a)
-   a = a
-end)
 
 about:Button("买",function()
      if a == "按钮" then
