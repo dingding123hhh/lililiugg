@@ -286,14 +286,14 @@ local bReturn = teleGui:Button("返回上一个位置",
 local masterLocations = {
 	--Port Jackson
 	PortJacksonDocks = Vector3.new(56.7393608, 41.4751053, -63.380661),
-	水族馆 = Vector3.new(-71.4487915, 55.8237305, 77.1413193),
-	船商店 = Vector3.new(-3.54861736, 46.9481888, -107.122681),
-	供应商店 = Vector3.new(2.20014167, 53.5718613, 11.437911),
-	波特杰克逊卡斯特 = Vector3.new(-52.98069, 54.567421, -20.777195),
-	探索酒店 = Vector3.new(-114.295792, 54.1254578, -67.9122925),
-	罗德尼 = Vector3.new(-105.481873, 54.1767731, -10.4815578),
-	硬币箱 = Vector3.new(-53.1726341, 52.9375458, 13.6784639),
-	波特杰克逊波珀森 = Vector3.new(-76.9964676, 50.4331894, -132.130676),
+	Aquarium = Vector3.new(-71.4487915, 55.8237305, 77.1413193),
+	BoatShop = Vector3.new(-3.54861736, 46.9481888, -107.122681),
+	SupplyShop = Vector3.new(2.20014167, 53.5718613, 11.437911),
+	PortJacksonCaster = Vector3.new(-52.98069, 54.567421, -20.777195),
+	QuestTavern = Vector3.new(-114.295792, 54.1254578, -67.9122925),
+	Rodney = Vector3.new(-105.481873, 54.1767731, -10.4815578),
+	CoinChests = Vector3.new(-53.1726341, 52.9375458, 13.6784639),
+	PortJacksonPoperson = Vector3.new(-76.9964676, 50.4331894, -132.130676),
 
 	--Volcano Island
 	VolcanoIslandDocks = Vector3.new(2815.75854, 41.5044899, 1470.11658),
