@@ -3513,25 +3513,6 @@ about:Toggle("查看玩家",false,function(state)
     end
 end)
 
-about:Toggle("查看玩家基地",false,function(state)
-    local see = nil
-    for i, v in pairs(game.Workspace.Properties:GetChildren()) do
-        if v.Owner.Value == game.Players[Green.playernamedied] then
-
-            see = v.OriginSquare
-        end
-    end
-
-    if state then
-        if see == nil then
-            return notify("丁丁", "没有找到基地", 4)
-        end
-        game:GetService('Workspace').CurrentCamera.CameraSubject = see
-    else
-        game:GetService('Workspace').CurrentCamera.CameraSubject = lp.Character.Humanoid
-    end
-end)
-
 local UITab7 = win:Tab("『汽车』",'7734068321')
 
 local about = UITab7:section("『汽车』",true)
