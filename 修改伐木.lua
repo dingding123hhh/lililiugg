@@ -1878,10 +1878,6 @@ about:Button("最大土地",function()
     makebase(CFrame.new(spos.X - 40, spos.Y, spos.Z - 80))
 end)
 
-about:Textbox("选择存档","",true,function(value)
-Green.soltnumber = value
-end)
-
 about:Button("加载存档",function()
     ScriptLoadOrSave = true
     local CheckSlot = CheckSlotNumber()
