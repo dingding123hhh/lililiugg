@@ -1,6 +1,6 @@
 -- MOST OF THIS CODE IS FROM INFINITE YIELD TPUA COMMAND
 
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "『已汉化』"; Text ="已汉化"; Duration = 4; })
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "『已汉化』"; Text ="汉化by禁漫中心"; Duration = 4; })
 
 local G2L = {}
 G2L["1"] = Instance.new("ScreenGui", game:GetService("CoreGui"))
