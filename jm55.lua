@@ -1446,27 +1446,6 @@ local UITab30 = win:Tab("『汽车经销大亨』",'7734068321')
 
 local about = UITab30:section("『主要』",true)
 
-about:Toggle("自动驾驶(新版)", false, function(state)
-getfenv().auto = (state and true or false)
-while getfenv().auto do
-local chr = game.Players.LocalPlayer.Character
-local car = chr.Humanoid.SeatPart.Parent.Parent
-dist = (chr.HumanoidRootPart.Position-car.Engine.CFrame.LookVector*1000).Magnitude
-local TweenService = game:GetService("TweenService")
-local TweenInfoToUse = TweenInfo.new(dist/1000, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, true, 0)
-
-local TweenValue = Instance.new("CFrameValue")
-TweenValue.Value = car:GetPrimaryPartCFrame()
-
-TweenValue.Changed:Connect(function()
-car:SetPrimaryPartCFrame(TweenValue.Value)
-end)
-local OnTween = TweenService:Create(TweenValue, TweenInfoToUse, {Value=car.Engine.CFrame+car.Engine.CFrame.LookVector*1000})
-OnTween:Play()
-OnTween.Completed:Wait()
-end
-end)
-
 about:Toggle("自动收集零件", false, function(state)
     getfenv().test = (state and true or false)
     while getfenv().test do
