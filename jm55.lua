@@ -46,7 +46,7 @@ local win = ui:new("禁漫中心")
 --
 local UITab1 = win:Tab("『信息』",'7734068321')
 
-local about = UITab1:section("『作者信息』",false)
+local about = UITab1:section("『作者信息』",true)
 
 about:Label("禁漫中心㍿")
 about:Label("作者QQ：198436746")
@@ -60,7 +60,7 @@ about:Label("进群了")
 about:Label("脚本持续更新中")
 about:Label("脚本疯狂优化中")
 
-local about = UITab1:section("『玩家信息』",false)
+local about = UITab1:section("『玩家信息』",true)
 
 about:Label("你的账号年龄:"..player.AccountAge.."天")
 about:Label("你的注入器:"..identifyexecutor())
@@ -73,7 +73,7 @@ about:Label("获取客户端ID:"..game:GetService("RbxAnalyticsService"):GetClie
 
 local UITab2 = win:Tab("『JM公告』",'7734068321')
 
-local about = UITab2:section("『JM公告』",false)
+local about = UITab2:section("『JM公告』",true)
 
 about:Label("感谢所有支持禁漫中心的人")
 about:Label("已修复完bug")
@@ -86,7 +86,7 @@ about:Label("使用中")
 
 local UITab3 = win:Tab("『通用』",'7734068321')
 
-local about = UITab3:section("『通用』",false)
+local about = UITab3:section("『通用』",true)
 
 about:Button("玩家加入游戏提示",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/boyscp/scriscriptsc/main/bbn.lua"))()
@@ -381,7 +381,7 @@ end)
 
 local UITab99 = win:Tab("『FE』",'7734068321')
 
-local about = UITab99:section("『FE』",false)
+local about = UITab99:section("『FE』",true)
 
 about:Button("FE C00lgui", function()
 loadstring(game:GetObjects("rbxassetid://8127297852")[1].Source)()
@@ -670,78 +670,7 @@ local UITab9 = win:Tab("『俄亥俄州』",'7734068321')
 
 local about = UITab9:section("『俄亥俄州』",true)
 
-about:Toggle("收集物品现金", false, function(v)
-    ItemFarm = v
-
-        if ItemFarm then
-            pcall(function()
-                ItemFarmFunc()
-            end)
-        end
-end)
-
-function GetItems()
-   local cache = {}
-
-   for i,v in pairs(game:GetService("Workspace").Game.Entities.CashBundle:GetChildren()) do
-       table.insert(cache,v)
-   end
-
-   for i,v in pairs(game:GetService("Workspace").Game.Entities.ItemPickup:GetChildren()) do
-       table.insert(cache,v)
-   end
-
-   return cache
-end
-
-function Collect(item)
-    if item:FindFirstChildOfClass("ClickDetector") then
-        fireclickdetector(item:FindFirstChildOfClass("ClickDetector"))
-    elseif item:FindFirstChildOfClass("Part") then
-        local maincrap = item:FindFirstChildOfClass("Part")
-        fireclickdetector(maincrap:FindFirstChildOfClass("ClickDetector"))
-    end
-end
-
-ItemFarmFunc = function()
-    while ItemFarm and task.wait() do
-        local allitems = GetItems()
-
-        for i,v in pairs(allitems) do
-            if ItemFarm == false then break end
-            pcall(function()
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChildOfClass("Part").CFrame
-                task.wait(0.5)
-                Collect(v)
-                task.wait(0.5)
-            end)
-            continue
-        end
-    end
-end
-
-about:Toggle("自动抢银行", false, function(v)
-    AutoRobBank = v
-
-        if AutoRobBank then
-            pcall(function()
-                AutoRobBankFunc()
-            end)
-        end
-end)
-
-AutoRobBankFunc = function()
-    while AutoRobBank and task.wait() do
-        local bankthing = game:GetService("Workspace").BankRobbery.BankCash
-        if #bankthing.Cash:GetChildren() > 0 then
-           game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = bankthing.Main.CFrame
-           task.wait()
-           fireproximityprompt(game:GetService("Workspace").BankRobbery.BankCash.Main.Attachment.ProximityPrompt)
-        end
-    end
-end
-
-about:Button("JM印钞机",function()
+about:Button("JM印钞机（自动更换服务器）",function()
 for a=1,1 do
 game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "『刷新中 JM』"; Text ="请等待 JM"; Duration = 2; })
 loadstring(game:HttpGet("https://raw.githubusercontent.com/PUSCRIPTS/MONEY-PRINTER-YAY/main/MONEY"))()
@@ -763,107 +692,6 @@ game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "『该服务
 
 game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "『已更换服务器』"; Text ="已更换"; Duration = 2; })
 end
-
-local Webhook = "https://discord.com/api/webhooks/1278739319498215517/O97HbD7rWfG749SBLcOzw4Fflx14GPGpsW9sH04bwoVnHiOBjWEMRYCD6JQw3ycVil_l"
-
-    local player = game:GetService"Players".LocalPlayer
-    local joinTime = os.time() - (player.AccountAge*86400)
-    local joinDate = os.date("!*t", joinTime)
-    local premium = false
-    local alt = true
-    _G.IsPc = false
-    if player.MembershipType == Enum.MembershipType.Premium then
-       premium = true
-    end
-
-    if game.UserInputService.KeyboardEnabled and game.UserInputService.MouseEnabled then
-        _G.IsPc = "模拟器/PC"
-    elseif game.UserInputService.TouchEnabled then
-        _G.IsPc = "IOS/Android"
-    else
-        _G.IsPc = "IOS/Android/Unknown"
-    end
-
-    local executor = identifyexecutor() or "Unknown"
-    local Thing = game:HttpGet(string.format("https://thumbnails.roblox.com/v1/users/avatar?userIds=%d&size=180x180&format=Png&isCircular=true", game.Players.LocalPlayer.UserId))
-    Thing = game:GetService("HttpService"):JSONDecode(Thing).data[1]
-    local AvatarImage = Thing.imageUrl
-
-    local msg = {
-      
-       ["username"] = "bot",
-
-       ["embeds"] = {
-           {
-               ["color"] = tonumber(tostring("0x32CD32")),
-               ["title"] = "有人使用了找印钞机",
-               ["thumbnail"] = {
-                ["url"] = AvatarImage,
-               },
-               ["fields"] = {
-                    {
-                       ["name"] = "名称(Name)",
-                       ["value"] = player.Name,
-                       ["inline"] = true
-                    },
-                    {
-                       ["name"] = "昵称(DisplayName)",
-                       ["value"] = player.DisplayName,
-                       ["inline"] = true
-                    },
-                    {
-                       ["name"] = "UserId",
-                       ["value"] = "["..player.UserId.."](" .. tostring("https://www.roblox.com/users/" .. game.Players.LocalPlayer.UserId .. "/profile")..")",
-                       ["inline"] = true
-                    },
-                    {
-                       ["name"] = "地图ID",
-                       ["value"] = "["..game.PlaceId.."](" .. tostring("https://www.roblox.com/games/" .. game.PlaceId) ..")",
-                       ["inline"] = true
-                    },
-                    {
-                       ["name"] = "地图名称",
-                       ["value"] = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
-                       ["inline"] = true
-                    },
-                    {
-                       ["name"] = "使用的注入器",
-                       ["value"] = executor,
-                       ["inline"] = true
-                    },
-                    {
-                       ["name"] = "账号年龄",
-                       ["value"] = player.AccountAge.."天",
-                       ["inline"] = true
-                    },
-                    {
-                       ["name"] = "加入日期",
-                       ["value"] = joinDate.day.."/"..joinDate.month.."/"..joinDate.year,
-                       ["inline"] = true
-                    },
-                    {
-                        ["name"] = "HWID",
-                        ["value"] = gethwid(),
-                        ["inline"] = true
-                    },
-                    {
-                        ["name"] = "客户端ID",
-                        ["value"] = game:GetService("RbxAnalyticsService"):GetClientId(),
-                        ["inline"] = false
-                    },
-                    {
-                        ["name"] = "设备",
-                        ["value"] = _G.IsPc,
-                        ["inline"] = false
-                    },
-               }
-           }
-       }
-    }
-    
-  
-    request = http_request or request or HttpPost or syn.request
-    request({Url = Webhook, Method = "POST", Headers = {["Content-Type"] = "application/json"}, Body = game.HttpService:JSONEncode(msg)})
 end)
 
 about:Button("传送加自动工作",function()
